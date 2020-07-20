@@ -1,8 +1,11 @@
 package PP.Benchmark;
 
-import PP.MergeSort.*;
-import PP.HelpInterfaces.Isort;
+import PP.HelpInterfaces.ISort;
 import PP.HelpInterfaces.SortUtils;
+import PP.MergeSort.ExecutorMergeSorter;
+import PP.MergeSort.ForkMergeSorter;
+import PP.MergeSort.ParallelMergeSorter;
+import PP.MergeSort.SeqMergeSorter;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -41,13 +44,14 @@ public class Timer {
 
     /**
      * Method to check the timing of the sorting  of a given data set of type {@link LinkedList} based on multiple iterations.
+     * this method will test the timing for the classes {@link SeqMergeSorter} adn {@link ParallelMergeSorter}.
      * @param data data to be sorted given by the user.
-     * @param iterations the total number of iteration to which the ExecutorMergeSorter will be repeated for the same mathematical set of data.
+     * @param iterations the total number of iteration to which the test will be repeated for the same mathematical set of data.
      * @param obj an instance of the following classes {@link ParallelMergeSorter}, {@link SeqMergeSorter} which will determine the logic of sorting.
-     * @return Timer object which contains the taken time for the passed object.
+     * @return Timer object which contains the taken time taken to preform the sorting divided by the number of iterations.
      */
     @SuppressWarnings("unchecked")
-    private static<T> Timer timingWithIterations(LinkedList<T> data, int iterations, Isort<T> obj) {
+    private static<T> Timer timingWithIterations(LinkedList<T> data, int iterations, ISort<T> obj) {
         LinkedList<T> cloned= (LinkedList<T>) data.clone();
         Timer timer = new Timer(obj.getClass().getSimpleName());
 
@@ -59,11 +63,18 @@ public class Timer {
 
             cloned=(LinkedList<T>) data.clone();
         }
+        timer.setTakenTime(timer.getTakenTime()/iterations);
         return timer;
     }
 
 
-
+    /**
+     * Method to check the timing of the sorting  of a given data set of type {@link LinkedList} based on multiple iterations.
+     * this method will test the timing for the classes {@link ForkMergeSorter}.
+     * @param data data to be sorted given by the user.
+     * @param iterations the total number of iteration to which the test will be repeated for the same mathematical set of data.
+     * @return Timer object which contains the taken time taken to preform the sorting divided by the number of iterations.
+     */
     @SuppressWarnings("unchecked")
     private static<T> Timer timingForkJoin(LinkedList<T> data, int iterations){
         LinkedList<T> cloned= (LinkedList<T>) data.clone();
@@ -76,10 +87,17 @@ public class Timer {
 
             cloned=(LinkedList<T>) data.clone();
         }
+        timer.setTakenTime(timer.getTakenTime()/iterations);
         return timer;
     }
 
-
+    /**
+     * Method to check the timing of the sorting  of a given data set of type {@link LinkedList} based on multiple iterations.
+     * this method will test the timing for the classes {@link ExecutorMergeSorter}.
+     * @param data data to be sorted given by the user.
+     * @param iterations the total number of iteration to which the test will be repeated for the same mathematical set of data.
+     * @return Timer object which contains the taken time taken to preform the sorting divided by the number of iterations.
+     */
     @SuppressWarnings("unchecked")
     private static<T> Timer timingExecutor(LinkedList<T> data, int iterations){
         LinkedList<T> cloned= (LinkedList<T>) data.clone();
@@ -92,6 +110,7 @@ public class Timer {
 
             cloned=(LinkedList<T>) data.clone();
         }
+        timer.setTakenTime(timer.getTakenTime()/iterations);
         return timer;
     }
 
@@ -107,20 +126,25 @@ public class Timer {
             iterations=Integer.parseInt(args[0]);
             numberOFData=Integer.parseInt(args[1]);
         }
-        Timer [] timeObjects= new Timer[5];
 
-        LinkedList<Integer> data= SortUtils.randomNumber(numberOFData);
+
+        var timeObjects= new Timer[5];
+
+        var data= SortUtils.randomNumber(numberOFData);
 
 
         timeObjects[0] =Timer.timingWithIterations(data,iterations ,new SeqMergeSorter<>());
-        timeObjects[1]= Timer.timingWithIterations(data,iterations ,new ParallelMergeSorter<>());
-        timeObjects[2]=Timer.timingForkJoin(data,iterations);
-        timeObjects[3]=Timer.timingExecutor(data,iterations);
+        timeObjects[1] = Timer.timingWithIterations(data,iterations ,new ParallelMergeSorter<>());
+        timeObjects[2] =Timer.timingForkJoin(data,iterations);
+        timeObjects[3] =Timer.timingExecutor(data,iterations);
 
-        timeObjects[4]= new Timer("Test done with Random "+ numberOFData+" Numbers");
+        timeObjects[4] = new Timer("Test done with Random "+ numberOFData+" Numbers");
         timeObjects[4].setTakenTime(Arrays.stream(timeObjects).mapToLong(Timer::getTakenTime).sum());
 
         Arrays.stream(timeObjects).forEach(System.out::print);
+        System.out.println("-".repeat(80));//java 11
+        System.out.println(String.format("%-71s %-20s %n", "Total taken Time in Sec. is  :", timeObjects[4].getTakenTime()/1000 ));
 
     }
+
 }

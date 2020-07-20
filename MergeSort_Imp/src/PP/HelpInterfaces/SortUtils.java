@@ -3,8 +3,15 @@ package PP.HelpInterfaces;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.stream.IntStream;
-
+/**
+ * <pre>
+ * The creation of this Interface is due to the fact that all the Junit testes {@link PP.test} have to have the following:
+ * - Method for generating random numbers with the size according to the desired limit {@link SortUtils#randomNumber(int)}.
+ * - Method for generating a {@link LinkedList} contains randomly generated strings of a specific length provided by the user {@link SortUtils#randomString(int, int)}.
+ * </pre>
+ */
 public interface SortUtils {
+
     /**
      * Method will generate a {@link LinkedList} contains randomly generated strings of a specific length provided by the user.
      * @param maxLength the desired max length for the generated string.
@@ -12,6 +19,7 @@ public interface SortUtils {
      * @return {@link LinkedList} which contains randomly generated {@link String}s.
      */
     static LinkedList<String> randomString(final int maxLength,int limit) {
+
         var ranData=new LinkedList<String>();
 
         IntStream.range(0,limit).forEach(x -> ranData.add(new Random()
@@ -34,4 +42,5 @@ public interface SortUtils {
         new Random().ints(0,limit).limit(limit).forEach(ranData::add);
         return ranData;
     }
+
 }

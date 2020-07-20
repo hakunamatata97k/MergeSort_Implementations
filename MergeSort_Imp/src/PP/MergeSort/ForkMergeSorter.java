@@ -1,12 +1,13 @@
 package PP.MergeSort;
 
-import PP.HelpInterfaces.Iconcurrentsort;
+import PP.HelpInterfaces.IConcurrentSort;
 
 import java.util.LinkedList;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-public class ForkMergeSorter<T>  extends RecursiveAction implements Iconcurrentsort<T> {
+public class ForkMergeSorter<T>  extends RecursiveAction implements IConcurrentSort<T> {
+
     private final LinkedList<T> internData;
 
     public ForkMergeSorter(LinkedList<T> data){ internData =data; }
@@ -16,8 +17,7 @@ public class ForkMergeSorter<T>  extends RecursiveAction implements Iconcurrents
      */
     @Override
     protected void compute() {
-        if (internData.size() < 2)
-            return;
+        if (internData.size() < 2) return;
 
         var mid = internData.size()/2;
         var left = new ForkMergeSorter<>( new LinkedList<>( internData.subList(0, mid) ) );

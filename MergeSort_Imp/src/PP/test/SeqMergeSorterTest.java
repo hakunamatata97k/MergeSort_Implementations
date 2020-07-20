@@ -16,7 +16,7 @@ class SeqMergeSorterTest {
     @Test
     @SuppressWarnings("unchecked")
     void test_SeqMerge_Empty() {
-        LinkedList<Integer> data = new LinkedList<>();
+        var data = new LinkedList<Integer>();
         var temp= (LinkedList<Integer>) data.clone();
         Collections.sort(temp);
 
@@ -30,7 +30,7 @@ class SeqMergeSorterTest {
     @Test
     @SuppressWarnings("unchecked")
     void test_SeqMerge_Integers() {
-        LinkedList<Integer> data = SortUtils.randomNumber(128);
+        var data = SortUtils.randomNumber(128);
         var temp= (LinkedList<Integer>) data.clone();
         Collections.sort(temp);
 
@@ -44,7 +44,7 @@ class SeqMergeSorterTest {
     @Test
     @SuppressWarnings("unchecked")
     void test_SeqMerge_Strings() {
-        LinkedList<String> data= SortUtils.randomString(5,32);
+        var data= SortUtils.randomString(5,32);
 
         data.sort(Collections.reverseOrder());
 

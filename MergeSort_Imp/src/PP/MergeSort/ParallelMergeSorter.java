@@ -1,6 +1,6 @@
 package PP.MergeSort;
 
-import PP.HelpInterfaces.Isort;
+import PP.HelpInterfaces.ISort;
 
 import java.util.LinkedList;
 
@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * </pre>
  * @param <T> The type of elements held in {@link LinkedList} collection.
  */
-public class ParallelMergeSorter<T> implements Isort<T> {
+public class ParallelMergeSorter<T> implements ISort<T> {
 
     /**
      * merge sort the list based on the Amdahl's law.
@@ -22,8 +22,7 @@ public class ParallelMergeSorter<T> implements Isort<T> {
      */
     @Override
     public void sort(LinkedList<T> dataToBeSorted) {
-        if (dataToBeSorted.size() < 2)
-            return;
+        if (dataToBeSorted.size() < 2) return;
         parallelMergeSort(dataToBeSorted, Runtime.getRuntime().availableProcessors());
     }
 
