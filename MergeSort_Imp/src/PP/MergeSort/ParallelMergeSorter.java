@@ -8,7 +8,7 @@ import java.util.LinkedList;
 /**
  * <pre>
  * This class is an implementation of the merge sort Algorithm with the following properties :
- *  - work with {@link Thread}s to achive the better performance while sub-listing.
+ *  - work with {@link Thread}s to achieve the better performance while sub-listing.
  *  - It's based on the <a href="https://en.wikipedia.org/wiki/Amdahl's_law">Amdahl's law</a>.
  * </pre>
  * @param <T> The type of elements held in {@link LinkedList} collection.
@@ -29,7 +29,6 @@ public class ParallelMergeSorter<T> implements ISort<T> {
     /**
      * @param dataToBeSorted given by user to be sorted.
      * @param threadCount the number of the available Logical Processors given by {@link Runtime#getRuntime()}.
-     * @throws NullPointerException if the given data is null.
      */
     private void parallelMergeSort(LinkedList<T> dataToBeSorted, int threadCount) {
         if (threadCount <= 1)

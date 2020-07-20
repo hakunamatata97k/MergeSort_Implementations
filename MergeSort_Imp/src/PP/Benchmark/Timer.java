@@ -13,29 +13,43 @@ import java.util.LinkedList;
 /**
  * This class is made as "benchmark" simulation to check the speed and reliability of the sorting algorithms implemented
  * in the Package {@code PP.Mergesort}.
+ * @author KAZEM ALJALABI, 1910732 :)
  */
 public class Timer {
-
 
     private long startTime=0, endTime=0, takenTime=0;
     private final String message;
 
     public Timer(String message){ this.message =message; }
 
+    /**
+     * start the timer/"stop watch".
+     */
     public void setStartTime(){
         startTime+=System.currentTimeMillis();
         takenTime=endTime-startTime;
     }
 
+    /**
+     * stops the timer/"stop watch".
+     */
     public void setEndTime(){
         endTime+=System.currentTimeMillis();
         takenTime=endTime-startTime;
     }
 
+    /**
+     * to be used in setting the time of the class instance which will hold the calculated taken time in all tests.
+     * @param taken time to be declared as taken for a certain measuring operations.
+     */
     public void setTakenTime(long taken){
         takenTime=taken;
     }
 
+    /**
+     *
+     * @return the time taken to execute certain task.
+     */
     private long getTakenTime(){ return takenTime; }
 
 

@@ -16,6 +16,7 @@ import java.util.LinkedList;
     /**
      * Classes that implement this Interface have to define the Logic for the sorting.
      * @param dataToBeSorted the data to be sorted.
+     * @throws NullPointerException if the given data is null.
      */
      void sort(LinkedList<T> dataToBeSorted);
 
@@ -24,7 +25,7 @@ import java.util.LinkedList;
     /**
      * This method will merge the pre sorted sub-lists and insert them in the original data list.
      * @param left the left sub-list of the data.
-     * @param right the righ sub-list of the data.
+     * @param right the right sub-list of the data.
      * @param dataToBeSorted merging destination.
      */
     @SuppressWarnings("unchecked")
@@ -50,4 +51,5 @@ import java.util.LinkedList;
 
     @Override
     default int compareTo(T o) { return compareTo(o); }
+
 }
