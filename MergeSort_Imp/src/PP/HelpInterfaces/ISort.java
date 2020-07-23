@@ -37,10 +37,11 @@ import java.util.LinkedList;
         while (leftIndex < left.size() && rightIndex < right.size()) {
 
             if ( ((Comparable<T>)left.get(leftIndex)).compareTo(right.get(rightIndex)) <=0 )
-                dataToBeSorted.set(listIndex++, left.get(leftIndex++));
+                dataToBeSorted.set(listIndex, left.get(leftIndex++));
             else
-                dataToBeSorted.set(listIndex++, right.get(rightIndex++));
+                dataToBeSorted.set(listIndex, right.get(rightIndex++));
 
+            listIndex++;
         }
         while (leftIndex < left.size())
             dataToBeSorted.set(listIndex++, left.get(leftIndex++));

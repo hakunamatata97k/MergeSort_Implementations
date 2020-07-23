@@ -52,9 +52,9 @@ public class Timer {
      */
     private long getTakenTime(){ return takenTime; }
 
-
     @Override
     public String toString() { return String.format("%-50s %-20s %s %n", message, "Time Taken :",getTakenTime()); }
+
 
     /**
      * Method to check the timing of the sorting  of a given data set of type {@link LinkedList} based on multiple iterations.
@@ -127,7 +127,6 @@ public class Timer {
         timer.setTakenTime(timer.getTakenTime()/iterations);
         return timer;
     }
-
 
     public static void main(String[] args) {
         var iterations=1;

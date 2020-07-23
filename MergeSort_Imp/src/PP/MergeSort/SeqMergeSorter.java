@@ -11,6 +11,9 @@ import java.util.LinkedList;
 public class SeqMergeSorter<T> implements ISort<T> {
 
     /**
+     * {@inheritDoc}
+     *
+     * @implSpec
      * divides the list into small sub lists.
      * @param dataToBeSorted the data to be sorted.
      * @throws NullPointerException if the given data is null.

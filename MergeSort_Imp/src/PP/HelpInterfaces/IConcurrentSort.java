@@ -28,9 +28,11 @@ public interface IConcurrentSort<T> extends Comparable<T> {
 
             if ( ((Comparable<T>)left.get(leftIndex)).compareTo(right.get(rightIndex)) <=0 )
 
-                dataToBeSorted.set(listIndex++, left.get(leftIndex++));
+                dataToBeSorted.set(listIndex, left.get(leftIndex++));
             else
-                dataToBeSorted.set(listIndex++, right.get(rightIndex++));
+                dataToBeSorted.set(listIndex, right.get(rightIndex++));
+
+            listIndex++;
         }
         while (leftIndex < left.size())
             dataToBeSorted.set(listIndex++, left.get(leftIndex++));

@@ -14,7 +14,7 @@ class ForkMergeSorterTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    void test_ConcurrentMergeSorter_Empty() {
+    void test_ForkMergeSorter_Empty() {
         var data = new LinkedList<>();
         var temp= (LinkedList<Integer>) data.clone();
         Collections.sort(temp);
@@ -27,7 +27,7 @@ class ForkMergeSorterTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    void test_ConcurrentMergeSorter_Integers() {
+    void test_ForkMergeSorter_Integers() {
         var data = SortUtils.randomNumber(128);
         var temp= (LinkedList<Integer>) data.clone();
         Collections.sort(temp);
@@ -42,7 +42,7 @@ class ForkMergeSorterTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    void test_ConcurrentMergeSorter_Strings() {
+    void test_ForkMergeSorter_Strings() {
         var data= SortUtils.randomString(5,32);
 
         //        Collections.sort() is since 1.2 and some call it unity thus i used list.sort!

@@ -1,6 +1,7 @@
 package PP.MergeSort;
 
 import PP.HelpInterfaces.IConcurrentSort;
+import PP.HelpInterfaces.SortUtils;
 
 import java.util.LinkedList;
 import java.util.concurrent.*;
@@ -20,6 +21,7 @@ public class ExecutorMergeSorter<T> implements IConcurrentSort<T> {
     private final ExecutorService exe;
 
     public ExecutorMergeSorter() {
+        //Creates a work-stealing thread pool
         exe = Executors.newWorkStealingPool();
     }
 
@@ -43,7 +45,7 @@ public class ExecutorMergeSorter<T> implements IConcurrentSort<T> {
             f1.get();
             f2.get();
         } catch (InterruptedException | ExecutionException e) {
-            //if something bad happens go sort sequentially. this wont be executed unless the cpu is on fire and you are on fire.
+            //if something bad happens go sort sequentially. this wont be executed unless the cpu is on fire.
             new SeqMergeSorter<T>().sort(dataToBeSorted);
         }
         merge(left, right, dataToBeSorted);
@@ -61,6 +63,12 @@ public class ExecutorMergeSorter<T> implements IConcurrentSort<T> {
         var temp=new ExecutorMergeSorter<T>();
         temp.divide(dataToBeSorted);
         temp.exe.shutdownNow();//after the sorting there will be no thread alive :)
+    }
+
+    public static void main(String[] args) {
+        var data = SortUtils.randomNumber(10);
+        ExecutorMergeSorter.sort(data);
+        System.out.println(data);
     }
 
 }

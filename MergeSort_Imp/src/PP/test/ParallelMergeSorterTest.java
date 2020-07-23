@@ -14,7 +14,7 @@ class ParallelMergeSorterTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    void test_ParallelMerge_Empty() {
+    void test_ParallelMergeSorter_Empty() {
         var data = new LinkedList<Integer>();
         var temp= (LinkedList<Integer>) data.clone();
         Collections.sort(temp);
@@ -27,7 +27,7 @@ class ParallelMergeSorterTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    void test_ParallelMerge_Integers() {
+    void test_ParallelMergeSorter_Integers() {
         var data = SortUtils.randomNumber(128);
         var temp= (LinkedList<Integer>) data.clone();
         Collections.sort(temp);
@@ -41,7 +41,7 @@ class ParallelMergeSorterTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    void test_ParallelMerge_Strings() {
+    void test_ParallelMergeSorter_Strings() {
         var data= SortUtils.randomString(5,32);
         data.sort(Collections.reverseOrder());
 
