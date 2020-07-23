@@ -48,11 +48,13 @@ B) In order to optimize the code I did read the following:
 * understanding the [Amdahl's law].
 
 ##### Exercise 3: 
+* the trouble i went throught could be observed in this [StackOverFlow] Question _(asked and answered by me)_.
 * Choosing the right Threadpool that will alow the program to work freely without having any memory issues when sorting big data such like `1000.000` . 
     * `newCachedThreadPool` worked till some amount of data i think `70000`then melt down happend.
     * `newFixedThreadPool` failed miserably thus the program would be in hold whenever the threads are busy.
     * `newWorkStealingPool`worked like a charm due to the fact that the workStealing according to the javaDoc:
          >"creates a work-stealing thread pool using all available processors as its target parallelism level." 
+    
 * managing the  Sorting without wasting objects by making the `sort(LinkedList<T> data) static.
 
 ##### Exercise 4: 
@@ -66,6 +68,8 @@ B) In order to optimize the code I did read the following:
   - Doing the paper work the fifth exercise. 
 
 ------------------------------------------------------------------------
+
+ [StackOverFlow]:https://stackoverflow.com/questions/62982442/threadpool-unable-to-create-native-thread/62982939?noredirect=1#comment111408759_62982939
  [from Drawbacks of Divide and Conquer]:https://stanford.edu/~rezab/classes/cme323/S16/notes/Lecture03/cme323_lec3.pdf
  [Amdahl's law]:https://en.wikipedia.org/wiki/Amdahl's_law
  [lst.ethz.ch]:http://www.lst.ethz.ch/teaching/lectures/ss10/24/slides/recitation/week03/mergesort.pdf
