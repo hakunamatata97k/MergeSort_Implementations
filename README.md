@@ -65,7 +65,7 @@ B) In order to optimize the code I did read the following:
 ### Todo for me!
 
   - Check with prof if he accept the Second approach. (threads dont need temination flag program works fine without it.)
-  - Doing the paper work the fifth exercise. 
+  - Doing the paperwork for the fifth exercise. 
 
 ------------------------------------------------------------------------
 
