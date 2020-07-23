@@ -58,7 +58,7 @@ B) In order to optimize the code I did read the following:
 * managing the  Sorting without wasting objects by making the `sort(LinkedList<T> data) static.
 
 ##### Exercise 4: 
-* was in general not hard to implement and as in the pervious exercise i had  to make the `sort(LinkedList<T> data) method static.
+* was in general not hard to implement and as in the pervious exercise i had  to make the `sort(LinkedList<T> data)` method static.
 
 ------------------------------------------------------------------------
 
