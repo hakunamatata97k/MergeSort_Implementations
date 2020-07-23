@@ -10,7 +10,7 @@ In this repo I tried my best to implement the MergeSort in various ways:
   - via [WorkStealingThreadPool](https://github.com/hakunamatata97k/MergeSort_Implementations/blob/master/MergeSort_Imp/src/PP/MergeSort/ExecutorMergeSorter.java)
   - via [ForkJoin](https://github.com/hakunamatata97k/MergeSort_Implementations/blob/master/MergeSort_Imp/src/PP/MergeSort/ForkMergeSorter.java)
 
-
+------------------------------------------------------------------------
 
 ### Papers I've read: 
 
@@ -39,7 +39,7 @@ B) In order to optimize the code I did read the following:
   - [Is shifting bits faster than multiplying and dividing in Java?]
   - [Should I bit-shift to divide by 2 in Java?]
 
-
+------------------------------------------------------------------------
 
 ### Problems encountered me through the Coding per exercise: 
 
