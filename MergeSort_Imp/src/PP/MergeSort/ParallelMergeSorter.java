@@ -42,8 +42,18 @@ public class ParallelMergeSorter<T> implements ISort<T> {
             Thread tl, tr;
 
             int threadsForBranches = threadCount - 1;
-            tl = new Thread(() -> parallelMergeSort(left, threadsForBranches / 2));
-            tr = new Thread(() -> parallelMergeSort(right, threadsForBranches - threadsForBranches / 2));
+            tl = new Thread(new Runnable() {//lambda uses invokedynamic in byte code and is not anonymous class.
+                @Override
+                public void run() {
+                    parallelMergeSort(left, threadsForBranches / 2);
+                }
+            });
+            tr = new Thread(new Runnable() {//lambda uses invoKedynamic in byte code and is not anonymous class.
+                @Override
+                public void run() {
+                    parallelMergeSort(right, threadsForBranches - threadsForBranches / 2);
+                }
+            });
 
             tl.start();
             tr.start();

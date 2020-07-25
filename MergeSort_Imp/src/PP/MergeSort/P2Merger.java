@@ -24,14 +24,24 @@ public class P2Merger<T> implements ISort<T> {
 
 
         if (currentThreadsNum.get()<MAX_THREADS) {
-            threadedLeft = new Thread(() -> sort(left));
-            currentThreadsNum.incrementAndGet();
+            threadedLeft = new Thread(new Runnable() {//lambda uses invoKedynamic in byte code and is not anonymous class.
+                @Override
+                public void run() {
+                    sort(left);
+                }
+            });
+            currentThreadsNum.incrementAndGet();//1
             threadedLeft.start();
         }else
             sort(left);
 
         if (currentThreadsNum.get()<MAX_THREADS) {
-            threadedRight = new Thread(() -> sort(right));
+            threadedRight = new Thread(new Runnable() {//lambda uses invoKedynamic in byte code and is not anonymous class.
+                @Override
+                public void run() {
+                    sort(right);
+                }
+            });
             currentThreadsNum.incrementAndGet();
             threadedRight.start();
         }else
