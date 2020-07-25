@@ -1,4 +1,4 @@
-# MergeSort Implementations Done by (KAZEM ALJALABI)
+# MergeSort Implementations
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
@@ -13,8 +13,8 @@ In this repo I tried my best to implement the MergeSort in various ways:
 ------------------------------------------------------------------------
 
 ### Papers I've read: 
-
-A) In order to **maximize the understanding** of mergesort and it's implementations i've read your pdfs and the following papers from open-scources: 
+A) [What's New in java 8](https://leanpub.com/whatsnewinjava8) to read it please refer [here.](https://leanpub.com/whatsnewinjava8/read)
+B) In order to **maximize the understanding** of mergesort and it's implementations i've read your pdfs and the following papers from open-scources: 
 
 * Knowing and understanding the differance between [Executor], [Executors] and [ExecutorService].
 * Reading the **complete** javaDoc of the following: 
@@ -26,7 +26,7 @@ A) In order to **maximize the understanding** of mergesort and it's implementati
 * Distributed Algorithms and Optimization (stanford) (partially read) [from Drawbacks of Divide and Conquer].
 * [Performance analysis of multithreaded sorting algorithms by Kevin Jouper, Henrik Nordin] (amazing/read just the mergesort parts till now.)
 
-B) In order to optimize the code I did read the following: 
+C) In order to optimize the code I did read the following: 
 * [Writing Testable Code](https://medium.com/feedzaitech/writing-testable-code-b3201d4538eb).
 
 * chosing the rigt method to generate random data thus its being used in all test cases: 
@@ -46,6 +46,8 @@ B) In order to optimize the code I did read the following:
 ##### Exercise 2: (**Contains unreviewed Issue**)
 * I could NOT understand the logic behind terminating the threads via a boolean flag and `synchronized` method!.
 * understanding the [Amdahl's law].
+* I learned that lambdas are not to be treated as Anonymous classes thus according to the book [What's New in java 8] :
+    > A lambda expression is not an anonymous class; it actually uses invokedynamic in the byte-code.
 
 ##### Exercise 3: 
 * the trouble i went throught could be observed in this [StackOverFlow] Question _(asked and answered by me)_.
@@ -58,17 +60,17 @@ B) In order to optimize the code I did read the following:
 * managing the  Sorting without wasting objects by making the `sort(LinkedList<T> data) static.
 
 ##### Exercise 4: 
-* was in general not hard to implement and as in the pervious exercise i had  to make the `sort(LinkedList<T> data)` method static.
+* was in general not hard to implement and as in the pervious exercise i had  to make the `sort(LinkedList<T> data) method static.
 
 ------------------------------------------------------------------------
 
 ### Todo for me!
 
   - Check with prof if he accept the Second approach. (threads dont need temination flag program works fine without it.)
-  - Doing the paperwork for the fifth exercise. 
+  - Doing the paper work the fifth exercise. 
 
 ------------------------------------------------------------------------
-
+[What's New in java 8]: https://leanpub.com/whatsnewinjava8
  [StackOverFlow]:https://stackoverflow.com/questions/62982442/threadpool-unable-to-create-native-thread/62982939?noredirect=1#comment111408759_62982939
  [from Drawbacks of Divide and Conquer]:https://stanford.edu/~rezab/classes/cme323/S16/notes/Lecture03/cme323_lec3.pdf
  [Amdahl's law]:https://en.wikipedia.org/wiki/Amdahl's_law
