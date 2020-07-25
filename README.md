@@ -1,4 +1,4 @@
-# MergeSort Implementations
+# MergeSort Implementations Done by (KAZEM ALJALABI)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
@@ -10,7 +10,7 @@ In this repo I tried my best to implement the MergeSort in various ways:
   - via [WorkStealingThreadPool](https://github.com/hakunamatata97k/MergeSort_Implementations/blob/master/MergeSort_Imp/src/PP/MergeSort/ExecutorMergeSorter.java)
   - via [ForkJoin](https://github.com/hakunamatata97k/MergeSort_Implementations/blob/master/MergeSort_Imp/src/PP/MergeSort/ForkMergeSorter.java)
 
-
+------------------------------------------------------------------------
 
 ### Papers I've read: 
 
@@ -39,7 +39,7 @@ B) In order to optimize the code I did read the following:
   - [Is shifting bits faster than multiplying and dividing in Java?]
   - [Should I bit-shift to divide by 2 in Java?]
 
-
+------------------------------------------------------------------------
 
 ### Problems encountered me through the Coding per exercise: 
 
@@ -48,24 +48,28 @@ B) In order to optimize the code I did read the following:
 * understanding the [Amdahl's law].
 
 ##### Exercise 3: 
+* the trouble i went throught could be observed in this [StackOverFlow] Question _(asked and answered by me)_.
 * Choosing the right Threadpool that will alow the program to work freely without having any memory issues when sorting big data such like `1000.000` . 
     * `newCachedThreadPool` worked till some amount of data i think `70000`then melt down happend.
     * `newFixedThreadPool` failed miserably thus the program would be in hold whenever the threads are busy.
     * `newWorkStealingPool`worked like a charm due to the fact that the workStealing according to the javaDoc:
          >"creates a work-stealing thread pool using all available processors as its target parallelism level." 
+    
 * managing the  Sorting without wasting objects by making the `sort(LinkedList<T> data) static.
 
 ##### Exercise 4: 
-* was in general not hard to implement and as in the pervious exercise i had  to make the `sort(LinkedList<T> data) method static.
+* was in general not hard to implement and as in the pervious exercise i had  to make the `sort(LinkedList<T> data)` method static.
 
 ------------------------------------------------------------------------
 
 ### Todo for me!
 
   - Check with prof if he accept the Second approach. (threads dont need temination flag program works fine without it.)
-  - Doing the paper work the fifth exercise. 
+  - Doing the paperwork for the fifth exercise. 
 
 ------------------------------------------------------------------------
+
+ [StackOverFlow]:https://stackoverflow.com/questions/62982442/threadpool-unable-to-create-native-thread/62982939?noredirect=1#comment111408759_62982939
  [from Drawbacks of Divide and Conquer]:https://stanford.edu/~rezab/classes/cme323/S16/notes/Lecture03/cme323_lec3.pdf
  [Amdahl's law]:https://en.wikipedia.org/wiki/Amdahl's_law
  [lst.ethz.ch]:http://www.lst.ethz.ch/teaching/lectures/ss10/24/slides/recitation/week03/mergesort.pdf
