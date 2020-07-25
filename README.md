@@ -6,7 +6,7 @@ In this repo I tried my best to implement the MergeSort in various ways:
   - [sequentailly](https://github.com/hakunamatata97k/MergeSort_Implementations/blob/master/MergeSort_Imp/src/PP/MergeSort/SeqMergeSorter.java) 
   - via Threads (parallel):
     - [optimized Implementation](https://github.com/hakunamatata97k/MergeSort_Implementations/blob/master/MergeSort_Imp/src/PP/MergeSort/ParallelMergeSorter.java)
-    - [Naive Implementation](https://github.com/hakunamatata97k/MergeSort_Implementations/blob/master/MergeSort_Imp/src/PP/MergeSort/P2Merger.java)
+    - Naive Implementation (had to take it down it was a bit buggy!).
   - via [WorkStealingThreadPool](https://github.com/hakunamatata97k/MergeSort_Implementations/blob/master/MergeSort_Imp/src/PP/MergeSort/ExecutorMergeSorter.java)
   - via [ForkJoin](https://github.com/hakunamatata97k/MergeSort_Implementations/blob/master/MergeSort_Imp/src/PP/MergeSort/ForkMergeSorter.java)
 
