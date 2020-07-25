@@ -12,8 +12,8 @@ In this repo I tried my best to implement the MergeSort in various ways:
 
 ------------------------------------------------------------------------
 
-### Papers I've read: 
-A) [What's New in java 8](https://leanpub.com/whatsnewinjava8) to read it please refer [here.](https://leanpub.com/whatsnewinjava8/read)
+### Papers/Books I've read: 
+A) BOOK [What's New in java 8](https://leanpub.com/whatsnewinjava8) to read it please refer [here.](https://leanpub.com/whatsnewinjava8/read)
 
 
 B) In order to **maximize the understanding** of mergesort and it's implementations i've read your pdfs and the following papers from open-scources: 
