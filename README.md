@@ -66,10 +66,8 @@ C) In order to optimize the code I did read the following:
 
 ------------------------------------------------------------------------
 
-### Todo for me!
+### Time Analysis [here](https://github.com/hakunamatata97k/MergeSort_Implementations/blob/master/MergeSort_Imp/src/Experement_Timing.pdf)
 
-  - Check with prof if he accept the Second approach. (threads dont need temination flag program works fine without it.)
-  - Doing the paper work the fifth exercise. 
 
 ------------------------------------------------------------------------
 [What's New in java 8]: https://leanpub.com/whatsnewinjava8
