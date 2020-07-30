@@ -4,7 +4,6 @@ import PP.HelpInterfaces.ISort;
 
 import java.util.LinkedList;
 
-
 /**
  * <pre>
  * This class is an implementation of the merge sort Algorithm with the following properties :
@@ -14,8 +13,10 @@ import java.util.LinkedList;
  * @param <T> The type of elements held in {@link LinkedList} collection.
  */
 public class ParallelMergeSorter<T> implements ISort<T> {
+    private volatile boolean stop = false;
 
     /**
+     * {@inheritDoc}
      * merge sort the list based on the Amdahl's law.
      * @param dataToBeSorted given by user to be sorted.
      * @throws NullPointerException if the given data is null.
@@ -27,10 +28,18 @@ public class ParallelMergeSorter<T> implements ISort<T> {
     }
 
     /**
+     * invoke the threads termination!.
+     */
+    private void requestStopExecution () {
+        stop=true;
+    }
+
+    /**
      * @param dataToBeSorted given by user to be sorted.
      * @param threadCount the number of the available Logical Processors given by {@link Runtime#getRuntime()}.
      */
     private void parallelMergeSort(LinkedList<T> dataToBeSorted, int threadCount) {
+
         if (threadCount <= 1)
             (new SeqMergeSorter<T>()).sort(dataToBeSorted);
         else {
@@ -41,17 +50,24 @@ public class ParallelMergeSorter<T> implements ISort<T> {
 
             Thread tl, tr;
 
-            int threadsForBranches = threadCount - 1;
-            tl = new Thread(new Runnable() {//lambda uses invokedynamic in byte code and is not anonymous class.
+            var threadsForBranches = threadCount - 1;
+            tl = new Thread(new Runnable() { //lambda would've been better but you want it this way!:(
                 @Override
                 public void run() {
-                    parallelMergeSort(left, threadsForBranches / 2);
+                    if (!stop)
+                        parallelMergeSort(left, threadsForBranches / 2);
+                    else
+                        Thread.currentThread().interrupt();
                 }
             });
-            tr = new Thread(new Runnable() {//lambda uses invoKedynamic in byte code and is not anonymous class.
+
+            tr = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    parallelMergeSort(right, threadsForBranches - threadsForBranches / 2);
+                    if (!stop)
+                        parallelMergeSort(right, threadsForBranches - threadsForBranches / 2);
+                    else
+                        Thread.currentThread().interrupt();
                 }
             });
 

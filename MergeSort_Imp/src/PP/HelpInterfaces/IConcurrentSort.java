@@ -20,14 +20,13 @@ public interface IConcurrentSort<T> extends Comparable<T> {
      */
     @SuppressWarnings("unchecked")
     default void merge(LinkedList<T> left, LinkedList<T> right, LinkedList<T> dataToBeSorted) {
-        int leftIndex, listIndex,rightIndex;
+        int leftIndex, listIndex, rightIndex;
 
-        leftIndex=rightIndex=listIndex=0;
+        leftIndex = rightIndex = listIndex = 0;
 
         while (leftIndex < left.size() && rightIndex < right.size()) {
 
-            if ( ((Comparable<T>)left.get(leftIndex)).compareTo(right.get(rightIndex)) <=0 )
-
+            if ( ((Comparable<T>)left.get(leftIndex)).compareTo(right.get(rightIndex)) <= 0 )
                 dataToBeSorted.set(listIndex, left.get(leftIndex++));
             else
                 dataToBeSorted.set(listIndex, right.get(rightIndex++));
@@ -40,7 +39,6 @@ public interface IConcurrentSort<T> extends Comparable<T> {
         while (rightIndex < right.size())
             dataToBeSorted.set(listIndex++, right.get(rightIndex++));
     }
-
 
     @Override
     default int compareTo(T o) {

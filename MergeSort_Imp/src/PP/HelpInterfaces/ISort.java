@@ -18,9 +18,7 @@ import java.util.LinkedList;
      * @param dataToBeSorted the data to be sorted.
      * @throws NullPointerException if the given data is null.
      */
-     void sort(LinkedList<T> dataToBeSorted);
-
-
+    void sort(LinkedList<T> dataToBeSorted);
 
     /**
      * This method will merge the pre sorted sub-lists and insert them in the original data list.
@@ -30,13 +28,13 @@ import java.util.LinkedList;
      */
     @SuppressWarnings("unchecked")
     default void merge(LinkedList<T> left, LinkedList<T> right, LinkedList<T> dataToBeSorted) {
-        int leftIndex, listIndex,rightIndex;
+        int leftIndex, listIndex, rightIndex;
 
-        leftIndex=rightIndex=listIndex=0;
+        leftIndex = rightIndex = listIndex = 0;
 
         while (leftIndex < left.size() && rightIndex < right.size()) {
 
-            if ( ((Comparable<T>)left.get(leftIndex)).compareTo(right.get(rightIndex)) <=0 )
+            if ( ((Comparable<T>)left.get(leftIndex)).compareTo(right.get(rightIndex)) <= 0 )
                 dataToBeSorted.set(listIndex, left.get(leftIndex++));
             else
                 dataToBeSorted.set(listIndex, right.get(rightIndex++));

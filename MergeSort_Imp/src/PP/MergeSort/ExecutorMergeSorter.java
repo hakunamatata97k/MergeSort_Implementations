@@ -1,10 +1,12 @@
 package PP.MergeSort;
 
 import PP.HelpInterfaces.IConcurrentSort;
-import PP.HelpInterfaces.SortUtils;
 
 import java.util.LinkedList;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * <pre>
@@ -33,19 +35,19 @@ public class ExecutorMergeSorter<T> implements IConcurrentSort<T> {
         if (dataToBeSorted.size() < 2)
             return;
 
-        int mid = dataToBeSorted.size() / 2;
+        var mid = dataToBeSorted.size() / 2;
         var left = new LinkedList<>(dataToBeSorted.subList(0, mid));
         var right = new LinkedList<>(dataToBeSorted.subList(mid, dataToBeSorted.size()));
 
-        Future<?> f1= (exe.submit(() -> divide(left)));
-        Future<?> f2= (exe.submit(() -> divide(right)));
+        Future<?> f1 = (exe.submit(() -> divide(left)));
+        Future<?> f2 = (exe.submit(() -> divide(right)));
 
         try {
             //hold till the execution is done!:)
             f1.get();
             f2.get();
         } catch (InterruptedException | ExecutionException e) {
-            //if something bad happens go sort sequentially. this wont be executed unless the cpu is on fire.
+            //if something bad happens go sort sequentially.
             new SeqMergeSorter<T>().sort(dataToBeSorted);
         }
         merge(left, right, dataToBeSorted);
@@ -57,18 +59,11 @@ public class ExecutorMergeSorter<T> implements IConcurrentSort<T> {
      * @param <T> The type of elements held in {@link LinkedList} collection.
      * @throws NullPointerException if the given data is null.
      */
-    public static<T> void sort(LinkedList<T> dataToBeSorted){
+    public static<T> void sort(LinkedList<T> dataToBeSorted) {
         if (dataToBeSorted.size() < 2) return;
 
-        var temp=new ExecutorMergeSorter<T>();
+        var temp = new ExecutorMergeSorter<T>();
         temp.divide(dataToBeSorted);
         temp.exe.shutdownNow();//after the sorting there will be no thread alive :)
     }
-
-    public static void main(String[] args) {
-        var data = SortUtils.randomNumber(10);
-        ExecutorMergeSorter.sort(data);
-        System.out.println(data);
-    }
-
 }

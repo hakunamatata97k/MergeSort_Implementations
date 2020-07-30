@@ -23,12 +23,11 @@ public class SeqMergeSorter<T> implements ISort<T> {
         if (dataToBeSorted.size() < 2) return;
 
         var mid = dataToBeSorted.size()/2;
-        var left =new LinkedList<>(dataToBeSorted.subList(0, mid));
+        var left = new LinkedList<>(dataToBeSorted.subList(0, mid));
         var right = new LinkedList<>(dataToBeSorted.subList(mid, dataToBeSorted.size()));
 
         sort(left);
         sort(right);
         merge(left, right, dataToBeSorted);
     }
-
 }

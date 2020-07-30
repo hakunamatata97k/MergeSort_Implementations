@@ -20,7 +20,7 @@ public class ForkMergeSorter<T>  extends RecursiveAction implements IConcurrentS
 
     private final LinkedList<T> internData;
 
-    public ForkMergeSorter(LinkedList<T> data){ internData =data; }
+    public ForkMergeSorter(LinkedList<T> data) { internData =data; }
 
     /**
      * The main computation performed by this task.

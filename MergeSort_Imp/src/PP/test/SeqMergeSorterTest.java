@@ -1,6 +1,5 @@
 package PP.test;
 
-
 import PP.MergeSort.SeqMergeSorter;
 import PP.HelpInterfaces.SortUtils;
 import org.junit.jupiter.api.Test;
@@ -26,11 +25,10 @@ class SeqMergeSorterTest {
         assertEquals(data.size(),temp.size());
     }
 
-
     @Test
     @SuppressWarnings("unchecked")
     void test_SeqMerge_Integers() {
-        var data = SortUtils.randomNumber(128);
+        var data = SortUtils.generateRandomNumberList(128);
         var temp= (LinkedList<Integer>) data.clone();
         Collections.sort(temp);
 
@@ -44,9 +42,10 @@ class SeqMergeSorterTest {
     @Test
     @SuppressWarnings("unchecked")
     void test_SeqMerge_Strings() {
-        var data= SortUtils.randomString(5,32);
+        var data= SortUtils.generateRandomStringsList(5,32);
 
-        data.sort(Collections.reverseOrder());
+        //        Collections.sort() is since 1.2 and some call it unity thus i used list.sort!
+        data.sort(Collections.reverseOrder());//this is the same as Collections.sort(data, Collections.reverseOrder());
 
         var temp= (LinkedList<String>) data.clone();
         Collections.sort(temp);
