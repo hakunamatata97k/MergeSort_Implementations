@@ -49,7 +49,7 @@ public class ParallelMergeSorter<T> implements ISort<T> {
             var right = new LinkedList<>(dataToBeSorted.subList(mid, dataToBeSorted.size()));
 
             Thread tl, tr;
-
+            //this will work as levels so you can imagine it as btree. at the level 0-1-2 we already have 8 threads. so when we reach 3rd level we go sequential.
             var threadsForBranches = threadCount - 1;
             tl = new Thread(new Runnable() { //lambda would've been better but you want it this way!:(
                 @Override
