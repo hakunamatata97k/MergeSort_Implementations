@@ -1,8 +1,10 @@
 package PP.MergeSort;
 
 import PP.HelpInterfaces.ISort;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 /**
  * <pre>
@@ -12,33 +14,26 @@ import java.util.LinkedList;
  * </pre>
  * @param <T> The type of elements held in {@link LinkedList} collection.
  */
-public class ParallelMergeSorter<T> implements ISort<T> {
-    private volatile boolean stop = false;
+public final class ParallelMergeSorter<T> implements ISort<T> {
 
     /**
      * {@inheritDoc}
-     * merge sort the list based on the Amdahl's law.
+     *
+     * Implements the Merge sort Algorithm based on the Amdahl's law.
      * @param dataToBeSorted given by user to be sorted.
-     * @throws NullPointerException if the given data is null.
      */
     @Override
-    public void sort(LinkedList<T> dataToBeSorted) {
+    public void sort(@NotNull final LinkedList<T> dataToBeSorted) {
+        Objects.requireNonNull(dataToBeSorted);
         if (dataToBeSorted.size() < 2) return;
         parallelMergeSort(dataToBeSorted, Runtime.getRuntime().availableProcessors());
-    }
-
-    /**
-     * invoke the threads termination!.
-     */
-    private void requestStopExecution () {
-        stop=true;
     }
 
     /**
      * @param dataToBeSorted given by user to be sorted.
      * @param threadCount the number of the available Logical Processors given by {@link Runtime#getRuntime()}.
      */
-    private void parallelMergeSort(LinkedList<T> dataToBeSorted, int threadCount) {
+    private void parallelMergeSort(final LinkedList<T> dataToBeSorted, final int threadCount) {
 
         if (threadCount <= 1)
             (new SeqMergeSorter<T>()).sort(dataToBeSorted);
@@ -51,25 +46,10 @@ public class ParallelMergeSorter<T> implements ISort<T> {
             Thread tl, tr;
             //this will work as levels so you can imagine it as btree. at the level 0-1-2 we already have 8 threads. so when we reach 3rd level we go sequential.
             var threadsForBranches = threadCount - 1;
-            tl = new Thread(new Runnable() { //lambda would've been better but you want it this way!:(
-                @Override
-                public void run() {
-                    if (!stop)
-                        parallelMergeSort(left, threadsForBranches / 2);
-                    else
-                        Thread.currentThread().interrupt();
-                }
-            });
 
-            tr = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    if (!stop)
-                        parallelMergeSort(right, threadsForBranches - threadsForBranches / 2);
-                    else
-                        Thread.currentThread().interrupt();
-                }
-            });
+            tl = new Thread(() -> parallelMergeSort(left, threadsForBranches / 2) );
+
+            tr = new Thread(() -> parallelMergeSort(right, threadsForBranches - threadsForBranches / 2) );
 
             tl.start();
             tr.start();

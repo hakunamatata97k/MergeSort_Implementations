@@ -1,8 +1,10 @@
 package PP.MergeSort;
 
-import PP.HelpInterfaces.IConcurrentSort;
+import PP.HelpInterfaces.ISort;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,7 +20,7 @@ import java.util.concurrent.Future;
  * @param <T> The type of elements held in {@link LinkedList} collection.
  * @see Executors#newWorkStealingPool()
  */
-public class ExecutorMergeSorter<T> implements IConcurrentSort<T> {
+public final class ExecutorMergeSorter<T> implements ISort<T> {
 
     private final ExecutorService exe;
 
@@ -31,9 +33,8 @@ public class ExecutorMergeSorter<T> implements IConcurrentSort<T> {
      * it will divide the original data recursively till each sublist has 2 elements.
      * @param dataToBeSorted given by user to be sorted.
      */
-    private void divide(LinkedList<T> dataToBeSorted) {
-        if (dataToBeSorted.size() < 2)
-            return;
+    private void divide(final LinkedList<T> dataToBeSorted) {
+        if (dataToBeSorted.size() < 2) return;
 
         var mid = dataToBeSorted.size() / 2;
         var left = new LinkedList<>(dataToBeSorted.subList(0, mid));
@@ -54,16 +55,15 @@ public class ExecutorMergeSorter<T> implements IConcurrentSort<T> {
     }
 
     /**
-     * public method that will manage giving the forwarded data to the divide method and the termination of execution.
+     * {@inheritDoc}
+     *
+     * will manage giving the forwarded data to the divide method and thus sorting it with the help of {@link ExecutorService}.
      * @param dataToBeSorted given by user to be sorted.
-     * @param <T> The type of elements held in {@link LinkedList} collection.
-     * @throws NullPointerException if the given data is null.
      */
-    public static<T> void sort(LinkedList<T> dataToBeSorted) {
+    @Override
+    public void sort(@NotNull final LinkedList<T> dataToBeSorted) {
+        Objects.requireNonNull(dataToBeSorted);
         if (dataToBeSorted.size() < 2) return;
-
-        var temp = new ExecutorMergeSorter<T>();
-        temp.divide(dataToBeSorted);
-        temp.exe.shutdownNow();//after the sorting there will be no thread alive :)
+        divide(dataToBeSorted);
     }
 }

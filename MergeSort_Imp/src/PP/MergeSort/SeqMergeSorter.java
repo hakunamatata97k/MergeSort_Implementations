@@ -1,25 +1,26 @@
 package PP.MergeSort;
 
 import PP.HelpInterfaces.ISort;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 /**
  * This class is an implementation of the merge sort Algorithm in sequential order.
  * @param <T> The type of elements held in {@link LinkedList} collection.
  */
-public class SeqMergeSorter<T> implements ISort<T> {
+public final class SeqMergeSorter<T> implements ISort<T> {
 
     /**
      * {@inheritDoc}
      *
-     * @implSpec
-     * divides the list into small sub lists.
+     * Sequentially sorting a Generic {@link LinkedList}
      * @param dataToBeSorted the data to be sorted.
-     * @throws NullPointerException if the given data is null.
      */
     @Override
-    public void sort(LinkedList<T> dataToBeSorted) {
+    public void sort(@NotNull final LinkedList<T> dataToBeSorted) {
+        Objects.requireNonNull(dataToBeSorted);
         if (dataToBeSorted.size() < 2) return;
 
         var mid = dataToBeSorted.size()/2;
@@ -30,4 +31,5 @@ public class SeqMergeSorter<T> implements ISort<T> {
         sort(right);
         merge(left, right, dataToBeSorted);
     }
+
 }

@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 /**
  * <pre>
- * The creation of this Interface is due to the fact that all the Junit testes {@link PP.test} have to have the following:
+ * The creation of this Pr2.Hausarbeit.Interface is due to the fact that all the Junit testes {@link PP.test} have to have the following:
  * - Method for generating random numbers with the size according to the desired limit {@link SortUtils#generateRandomNumberList(int)}.
  * - Method for generating a {@link LinkedList} contains randomly generated strings of a specific length provided by the user {@link SortUtils#generateRandomStringsList(int, int)}.
  * </pre>
@@ -24,7 +24,7 @@ public interface SortUtils {
 
         IntStream.range(0,limit).forEach(x -> ranData.add(new Random()
                 .ints(65,123)
-                .filter(i-> (i>64 && i<91) || (i >96 && i<123))
+                .filter(i -> (i>64 && i<91) || (i >96 && i<123))
                 .mapToObj(i -> (char) i)
                 .limit(maxLength)
                 .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
@@ -68,9 +68,6 @@ public interface SortUtils {
      * @return  {@link IntStream} with a certain order either ascending or descending order.
      */
      private static IntStream decideOrder(final int left, final int right) {
-        if (left < right)
-            return IntStream.range(left,right);
-        else
-            return IntStream.iterate(left-1, i -> i >= right, i-> i-1).limit(left-right);
+         return left < right ? IntStream.range(left,right) : IntStream.iterate(left-1, i -> i >= right, i-> i-1).limit(left-right);
      }
 }

@@ -1,7 +1,7 @@
 package PP.test;
 
-import PP.MergeSort.ForkMergeSorter;
 import PP.HelpInterfaces.SortUtils;
+import PP.MergeSort.ForkMergeSorter;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -19,7 +19,7 @@ class ForkMergeSorterTest {
         var temp= (LinkedList<Integer>) data.clone();
         Collections.sort(temp);
 
-        ForkMergeSorter.sort(data);
+        new ForkMergeSorter<>().sort(data);
 
         assertEquals(temp, data);//this will call the AbstractList.equals. so instead of assertTrue(data.equals(temp));
         assertEquals(data.size(),temp.size());
@@ -32,7 +32,7 @@ class ForkMergeSorterTest {
         var temp= (LinkedList<Integer>) data.clone();
         Collections.sort(temp);
 
-        ForkMergeSorter.sort(data);
+        new ForkMergeSorter<Integer>().sort(data);
 
         assertEquals(temp, data);//this will call the AbstractList.equals. so instead of assertTrue(data.equals(temp));
         data.removeFirst();
@@ -44,13 +44,13 @@ class ForkMergeSorterTest {
     void test_ForkMergeSorter_Strings() {
         var data= SortUtils.generateRandomStringsList(5,32);
 
-        //        Collections.sort() is since 1.2 and some call it unity thus i used list.sort!
+        //Collections.sort() is since 1.2 and some call it unity thus i used list.sort!
         data.sort(Collections.reverseOrder());//this is the same as Collections.sort(data, Collections.reverseOrder());
 
         var temp= (LinkedList<String>) data.clone();
         Collections.sort(temp);
 
-        ForkMergeSorter.sort(data);
+        new ForkMergeSorter<String>().sort(data);
 
         assertEquals(temp, data);//this will call the AbstractList.equals. so instead of assertTrue(data.equals(temp));
         data.removeFirst();

@@ -1,24 +1,24 @@
 package PP.HelpInterfaces;
 
+import org.jetbrains.annotations.NotNull;
 import java.util.LinkedList;
 
 /**
  * <pre>
- * The creation of this Interface is due to the fact that all the Merge sort implementations have to have the following:
+ * The creation of this Pr2.Hausarbeit.Interface is due to the fact that all the Merge sort implementations have to have the following:
  * - Method for sorting {@link ISort#sort(LinkedList)}.
  * - Method for merging the divided lists {@link ISort#merge(LinkedList, LinkedList, LinkedList)}.
- * - Method that specify the comparision logic of the given type T.
+ * - Method that specify the comparison logic of the given type T.
  * </pre>
  * @param <T> is generic specified by the user.
  */
  public interface ISort<T> extends Comparable<T> {
 
     /**
-     * Classes that implement this Interface have to define the Logic for the sorting.
+     * Public Method that Manages the Sorting of the forwarded data.
      * @param dataToBeSorted the data to be sorted.
-     * @throws NullPointerException if the given data is null.
      */
-    void sort(LinkedList<T> dataToBeSorted);
+    void sort(@NotNull final LinkedList<T> dataToBeSorted);
 
     /**
      * This method will merge the pre sorted sub-lists and insert them in the original data list.
@@ -27,7 +27,7 @@ import java.util.LinkedList;
      * @param dataToBeSorted merging destination.
      */
     @SuppressWarnings("unchecked")
-    default void merge(LinkedList<T> left, LinkedList<T> right, LinkedList<T> dataToBeSorted) {
+    default void merge(LinkedList<T> left, LinkedList<T> right, final LinkedList<T> dataToBeSorted) {
         int leftIndex, listIndex, rightIndex;
 
         leftIndex = rightIndex = listIndex = 0;
@@ -49,6 +49,5 @@ import java.util.LinkedList;
     }
 
     @Override
-    default int compareTo(T o) { return compareTo(o); }
-
+    default int compareTo(@NotNull T o) { return compareTo(o); }
 }
