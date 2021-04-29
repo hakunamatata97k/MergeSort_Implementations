@@ -9,6 +9,7 @@ import java.util.Objects;
 /**
  * This class is an implementation of the merge sort Algorithm in sequential order.
  * @param <T> The type of elements held in {@link LinkedList} collection.
+ * @see ISort
  */
 public final class SeqMergeSorter<T> implements ISort<T> {
 

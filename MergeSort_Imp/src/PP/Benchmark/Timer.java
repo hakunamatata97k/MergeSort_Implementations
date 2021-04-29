@@ -13,9 +13,14 @@ import java.util.LinkedList;
 import java.util.Locale;
 
 /**
- * This class is made as "benchmark" simulation to check the speed and reliability of the sorting algorithms implemented
- * in the Package {@code PP.Mergesort}.
+ * <pre>
+ * This class is made as a "Benchmark" simulation to check the speed and reliability of the sorting algorithms implemented in the Following classes found in the Package {@code PP.Mergesort}:
+ * - {@link SeqMergeSorter}
+ * - {@link ParallelMergeSorter}
+ * - {@link ForkMergeSorter}
+ * - {@link ExecutorMergeSorter}
  * @author KAZEM ALJALABI :)
+ * </pre>
  */
 public final class Timer implements Comparable<Timer> {
 
@@ -73,9 +78,8 @@ public final class Timer implements Comparable<Timer> {
 
     /**
      * Method to check the timing of the sorting  of a given originalData set of type {@link LinkedList} based on multiple iterations.
-     * this method will test the timing for the classes {@link SeqMergeSorter} adn {@link ParallelMergeSorter}.
      * @param originalData originalData to be sorted given by the user.
-     * @param obj an instance of the following classes {@link ParallelMergeSorter}, {@link SeqMergeSorter} which will determine the logic of sorting.
+     * @param obj an instance of the classes that implements {@link ISort} which will determine the logic of sorting.
      * @return Timer object which contains the taken time taken to preform the sorting divided by the number of iterations.
      */
     @SuppressWarnings("unchecked")
@@ -98,7 +102,7 @@ public final class Timer implements Comparable<Timer> {
     }
 
     /**
-     * This method will give the Time taken by each specific sorting Algorithm to sort the given data, measured in Milliseconds.
+     * This method will give the Time taken by each specific implementation of the merge sort Algorithm to sort the given data, measured in Milliseconds.
      * @param data on which copy the tests will be preformed.
      * @param <T> the type of the data given by the user!.
      */
@@ -125,15 +129,15 @@ public final class Timer implements Comparable<Timer> {
      *                 <pre>
      *                  - Best: this simulate the best case scenario for a merge sort algorithm which is pre sorted list in ascending order.
      *                  - Worst: this simulate the worst case scenario for a merge sort algorithm which is pre sorted list in descending order.
-     *                  - Normal:  this simulate the normal case scenario for a merge sort algorithm which is non sorted list.
+     *                  - Normal: this simulate the normal case scenario for a merge sort algorithm which is non sorted list.
      *                 </pre>
      * @param rightBound identifies the limit of the list size and the values present in it.
      */
-    private static void measureCasesTime(final String caseName,final int rightBound) {
+    private static void measureCasesTime(final String caseName,final int leftBound, final int rightBound) {
         switch (caseName.toLowerCase(Locale.ROOT)) {
             case "normal" -> timeLogger(SortUtils.generateRandomNumberList(rightBound));
-            case "best" -> timeLogger(SortUtils.generateSortedNumbersList(0, rightBound));
-            case "worst" -> timeLogger(SortUtils.generateSortedNumbersList(rightBound, 0));
+            case "best" -> timeLogger(SortUtils.generateSortedNumbersList(leftBound, rightBound));
+            case "worst" -> timeLogger(SortUtils.generateSortedNumbersList(rightBound, leftBound));
         }
     }
 
@@ -153,27 +157,27 @@ public final class Timer implements Comparable<Timer> {
         printDesign("-","First Measuring case : Type (normal)");
 
         //we test first the common case for merge sort which is randomly generated data.
-        measureCasesTime("normal",numberOfData);
+        measureCasesTime("normal",0,numberOfData);
 
         printDesign("-","");
 
         printDesign("-","Second Measuring case : Type (best case)");
 
         //simulate the best case (already sorted list!:)
-        measureCasesTime("best", numberOfData);
+        measureCasesTime("best", 0, numberOfData);
 
         printDesign("-","Third Measuring case : Type (worst case)");
 
         //we give the sorting algorithms already sorted list but in descending order!.
-        measureCasesTime("worst", numberOfData);
+        measureCasesTime("worst", numberOfData, 0);
 
         printDesign("-","Fourth Measuring case : with double the amount of Data given!.");
 
-        measureCasesTime("normal", numberOfData*2);
+        measureCasesTime("normal", 0, numberOfData*2);
 
         printDesign("-","Fifth Measuring case : with 4 times the amount of Data given!.");
 
-        measureCasesTime("normal", numberOfData*4);
+        measureCasesTime("normal", 0,numberOfData*4);
 
         printDesign("-","");
         printDesign("*","End");

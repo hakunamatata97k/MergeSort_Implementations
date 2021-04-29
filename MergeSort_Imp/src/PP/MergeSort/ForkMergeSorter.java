@@ -15,6 +15,7 @@ import java.util.concurrent.RecursiveAction;
  *  - work with {@link ForkJoinPool} to achieve the better performance while sub-listing.
  * </pre>
  * @param <T> The type of elements held in {@link LinkedList} collection.
+ * @see ISort
  * @see RecursiveAction#compute()
  * @see ForkJoinPool
  */
@@ -63,8 +64,8 @@ public final class ForkMergeSorter<T>  extends RecursiveAction implements ISort<
     @Override
     public void sort(@NotNull final LinkedList<T> dataToBeSorted) {
         Objects.requireNonNull(dataToBeSorted);
-        if (internData.size() < 2) return;
         setInternData(dataToBeSorted);
+        if (internData.size() < 2) return;
         pool.invoke(this);
     }
 }

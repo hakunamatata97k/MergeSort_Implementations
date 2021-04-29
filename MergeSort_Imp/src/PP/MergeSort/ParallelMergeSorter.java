@@ -13,6 +13,7 @@ import java.util.Objects;
  *  - It's based on the <a href="https://en.wikipedia.org/wiki/Amdahl's_law">Amdahl's law</a>.
  * </pre>
  * @param <T> The type of elements held in {@link LinkedList} collection.
+ * @see ISort
  */
 public final class ParallelMergeSorter<T> implements ISort<T> {
 

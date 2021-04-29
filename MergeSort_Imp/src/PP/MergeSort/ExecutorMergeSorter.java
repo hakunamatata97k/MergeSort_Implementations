@@ -18,6 +18,7 @@ import java.util.concurrent.Future;
  *  - merge sort based on the divide and conquer concept.
  * </pre>
  * @param <T> The type of elements held in {@link LinkedList} collection.
+ * @see ISort
  * @see Executors#newWorkStealingPool()
  */
 public final class ExecutorMergeSorter<T> implements ISort<T> {

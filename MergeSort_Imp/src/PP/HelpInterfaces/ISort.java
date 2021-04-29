@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * - Method for merging the divided lists {@link ISort#merge(LinkedList, LinkedList, LinkedList)}.
  * - Method that specify the comparison logic of the given type T.
  * </pre>
- * @param <T> is generic specified by the user.
+ * @param <T> is generic Type specified by the user.
  */
  public interface ISort<T> extends Comparable<T> {
 
